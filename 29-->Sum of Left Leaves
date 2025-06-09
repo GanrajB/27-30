@@ -1,0 +1,23 @@
+class Solution {
+    Integer sum = 0;
+    public void helper(TreeNode root, boolean isLeft)
+    {
+        //base condition
+        if(root == null)
+            return;
+        //check whether this node is a left leaf node
+        if(isLeft && root.left == null && root.right == null)
+        {
+            sum = sum + root.val;
+            return;
+        }
+        //recursive call for left child
+        helper(root.left, true);
+        //recursive call for right child
+        helper(root.right, false);
+    }
+    public int sumOfLeftLeaves(TreeNode root) {
+        helper(root, false);
+        return sum;
+    }
+}
